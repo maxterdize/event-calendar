@@ -1,17 +1,11 @@
 import {eachDayOfInterval, endOfMonth, format, getDay, isToday, startOfMonth} from "date-fns";
 import clsx from "clsx";
 import {useMemo} from "react";
+import {EventCalendarProps, Event} from "../model/interfaces/interfaces.tsx";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-interface Event {
-    date: Date,
-    title: string,
-    city: string
-}
 
-interface EventCalendarProps {
-    events: Event[];
-}
+
 const EventCalendar = ({events}: EventCalendarProps) => {
     const currentDate = new Date();
     const firstDayOfMonth = startOfMonth(currentDate);
