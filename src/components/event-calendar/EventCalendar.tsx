@@ -1,7 +1,8 @@
 import {eachDayOfInterval, endOfMonth, format, getDay, isToday, startOfMonth} from "date-fns";
 import clsx from "clsx";
-import {useMemo} from "react";
+import {useMemo, useState} from "react";
 import {EventCalendarProps, Event} from "../model/interfaces/interfaces.tsx";
+import EventDetails from "../event-details/EventDetails.tsx";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -10,6 +11,8 @@ const EventCalendar = ({events}: EventCalendarProps) => {
     const currentDate = new Date();
     const firstDayOfMonth = startOfMonth(currentDate);
     const lastDayOfMonth = endOfMonth(currentDate);
+    const [displayEventDetails, setDisplayEventDetails] = useState(false);
+    const [targetEvent, setTargetEvent] = useState<Event>();
 
     const daysInMonth = eachDayOfInterval({
         start: firstDayOfMonth,
@@ -57,11 +60,18 @@ const EventCalendar = ({events}: EventCalendarProps) => {
                                 })}>
                                 {format(day, "d")}
                                 <div className="text-center">
-                                    {todaysEvents.map((event) => {
-                                        return <div
-                                            key={event.title}
-                                            className="bg-green-200 rounded-md text-gray-900"
-                                        >{event.title}</div>;
+                                    {todaysEvents.map((calendarEvent) => {
+                                        return <div onDoubleClick={(event) => {
+                                            const targetTitle = event.currentTarget.innerText;
+                                            setDisplayEventDetails(true);
+                                            setTargetEvent(events.find((event) => event.title === targetTitle));
+                                        }}
+                                            key={calendarEvent.title}
+                                            className="bg-green-200 rounded-md text-gray-900 cursor-pointer"
+                                        >
+                                            {calendarEvent.title}
+                                            {displayEventDetails && <EventDetails event={targetEvent} onClose={() => setDisplayEventDetails(false)} />}
+                                        </div>;
                                     })}
                                 </div>
                             </div>

@@ -7,3 +7,8 @@ export interface Event {
 export interface EventCalendarProps {
     events: Event[];
 }
+
+export interface EventDetailsProps {
+    event: Event | undefined,
+    onClose: () => void;
+}
