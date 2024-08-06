@@ -2,7 +2,7 @@
 
 To run the calendar:
 
-1- Clone the project
+1- Clone the project \n
 2- Navigate to the root folder
 3- Run: npm install
 4- Run: npm run dev
