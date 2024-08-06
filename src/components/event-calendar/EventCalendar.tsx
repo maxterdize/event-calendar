@@ -3,6 +3,7 @@ import clsx from "clsx";
 import {useMemo, useState} from "react";
 import {EventCalendarProps, Event} from "../model/interfaces/interfaces.tsx";
 import EventDetails from "../event-details/EventDetails.tsx";
+import {Plus} from "lucide-react";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -66,20 +67,21 @@ const EventCalendar = ({events}: EventCalendarProps) => {
                                             setDisplayEventDetails(true);
                                             setTargetEvent(events.find((event) => event.title === targetTitle));
                                         }}
-                                            key={calendarEvent.title}
-                                            className="bg-green-200 rounded-md text-gray-900 cursor-pointer"
+                                                    key={calendarEvent.title}
+                                                    className="bg-green-200 rounded-md text-gray-900 cursor-pointer"
                                         >
                                             {calendarEvent.title}
-                                            {displayEventDetails && <EventDetails event={targetEvent} onClose={() => setDisplayEventDetails(false)} />}
+                                            {displayEventDetails && <EventDetails event={targetEvent}
+                                                                                  onClose={() => setDisplayEventDetails(false)}/>}
                                         </div>;
                                     })}
                                 </div>
                             </div>
                         </>
-
                     );
                 })}
             </div>
+            <button onClick={() => setDisplayEventDetails(true)} className="absolute bottom-20 right-40 bg-indigo-400"><Plus size={30}/></button>
         </div>
     );
 };

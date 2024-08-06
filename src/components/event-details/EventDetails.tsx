@@ -24,7 +24,7 @@ const EventDetails = ({event, onClose}: EventDetailsProps) => {
                     }}>
                         <label>
                             Date:
-                            <input type="date" name="text" defaultValue={format(event?.date ? event.date : 0, "yyyy-MM-dd")}
+                            <input type="date" name="text" defaultValue={format(event?.date ? event.date : new Date(), "yyyy-MM-dd")}
                                    className="bg-white w-full px-4 py-3 text-black border-gray-300 rounded-md"/>
                         </label>
 
@@ -42,7 +42,7 @@ const EventDetails = ({event, onClose}: EventDetailsProps) => {
 
                         <button
                             type="submit"
-                            className="mt-4 w-5/12 flex items-center justify-center gap-2 px-5 py-3 font-medium rounded-md"
+                            className="mt-4 m-auto w-5/12 flex items-center justify-center px-5 py-3 font-medium rounded-md"
                         >Update</button>
 
                     </form>
