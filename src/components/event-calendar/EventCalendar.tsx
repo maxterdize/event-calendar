@@ -81,7 +81,11 @@ const EventCalendar = ({events}: EventCalendarProps) => {
                     );
                 })}
             </div>
-            <button onClick={() => setDisplayEventDetails(true)} className="absolute bottom-20 right-40 bg-indigo-400"><Plus size={30}/></button>
+            { !displayEventDetails && (
+                <button onClick={() => setDisplayEventDetails(true)}
+                        className="absolute bottom-20 right-40 bg-indigo-400"><Plus size={30}/></button>
+            )
+            }
         </div>
     );
 };
